@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Planets</h2>
+
+<a href="{% url 'planet_new' %}">Add New Planet</a>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Distance from Star (million km)</th>
+    <th>Radius (km)</th>
+    <th>Orbital Period (days)</th>
+    <th>Actions</th>
+  </tr>
+  
+  {% for planet in planets %}
+  <tr>
+    <td>{{ planet.name }}</td>
+    <td>{{ planet.average_distance_from_star }}</td>
+    <td>{{ planet.radius }}</td>
+    <td>{{ planet.orbital_period }}</td>
+    <td>
+      <a href="{% url 'planet_detail' planet.id %}">Detail</a> |
+      <a href="{% url 'planet_edit' planet.id %}">Edit</a> |
+      <a href="{% url 'planet_delete' planet.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+
+  {% if planets %}
+  <tr>
+    <td><strong>Average:</strong></td>
+    <td>{{ average_distance }}</td>
+    <td>{{ average_radius }}</td>
+    <td>{{ average_orbital_period }}</td>
+    <td></td>
+  </tr>
+  {% endif %}
+</table>
+
+{% endblock %}

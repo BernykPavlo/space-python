@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ planet.name }}</h2>
+  <p>Average distance from Sun: {{ planet.average_distance_from_sun }} million km</p>
+  <p>Radius: {{ planet.radius }} km</p>
+  <p>Orbital Period: {{ planet.orbital_period }} days</p>
+
+  <a href="{% url 'planet_edit' planet.id %}">Edit</a> |
+  <a href="{% url 'planet_delete' planet.id %}">Delete</a> |
+  <a href="{% url 'planet_list' %}">Back to List</a>
+{% endblock %}
